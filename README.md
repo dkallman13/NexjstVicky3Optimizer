@@ -1,3 +1,73 @@
 based off of math from GeneralistGaming's spreadsheet
 ## TODO
-Finish the app
+#### Backend
+- Get data from save file
+- make a database with that data
+	- determine data structures of save
+	- make sure the data stays in the same timeline from autosaves
+	- if a db exists, make sure it is from the same timeline as the latest save file
+- buildings, goods, and optimizations (the meat and potatoes)
+	- get good prices in buildable states for designated country
+	- sort:
+		- sort by peasants
+		- sort by unused airable land for farm buildings 
+		- sort by migration attraction
+		- sort by pops
+		- sort by unemployed pops
+		- sort by resource availability
+		- sort by market access
+	- calculate best buildings to build and potentially how many to build
+		- profit per worker
+		- profit per construction
+		- avg wage calculation
+		- price impacts of building in the state
+		- price impacts of building in market
+		- determine best PM's for buildings, both new and built
+#### Frontend
+- start page
+	- save select
+- tables for ___ in page form when the save is loaded:
+	- good prices
+		- in your market
+		- look for shortages/price floors and warn about them
+		- sort by:
+			- highest price %
+			- lowest price %
+			- orders high
+			- orders low
+	- state good prices
+		- checkbox for not in your market but with build access
+		- look for shortages/price floors and warn about them
+		- sort by:
+			- highest price %
+			- lowest price %
+			- orders high
+			- orders low
+	- states:
+		- in your market
+		- also a checkbox for not in your market but with build access
+		- building recommendations
+		- link to currently built buildings in the state
+		- link to state good prices
+		- sort by:
+			- sort by peasants
+			- sort by unused airable land for farm buildings 
+			- sort by migration attraction
+			- sort by pops
+			- sort by unemployed pops
+			- sort by resource availability
+			- sort by market access
+	- building types:
+		- profit per worker
+		- profit per construction
+		- avg wage calculation
+		- price impacts of building in the state
+		- price impacts of building in market
+		- determine best PM's for buildings
+	- buildings in a given state:
+		- profit per worker
+		- profit per construction
+		- avg wage calculation
+		- price impacts of building in the state
+		- price impacts of building in market
+		- determine best PM's for buildings

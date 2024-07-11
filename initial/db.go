@@ -2,7 +2,6 @@ package initial
 
 import (
 	"log"
-
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
