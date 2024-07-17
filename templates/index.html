@@ -1,5 +1,8 @@
 {{define "body"}}
-<h1>
-    {{ .savefilelocation }}
-</h1>
+<h1>please make sure that your save files are not compressed!<br> they will be about 5 times the size of compressed saves, so clean your saves folder regularly</h1>
+{{range .savefiles}}
+<h2>
+    {{ . }}
+</h2>
+{{end}}
 {{end}}

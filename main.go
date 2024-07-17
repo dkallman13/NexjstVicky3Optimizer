@@ -25,9 +25,10 @@ func main() {
 	router.HTMLRender = createRenderer()
 
 	router.GET("/", func(c *gin.Context) {
+		initial.SaveFileLister()
 		c.HTML(http.StatusOK, "index" ,  gin.H{
 			"title": "home",
-			"savefilelocation": initial.SaveFileLoc,
+			"savefiles": initial.SaveFiles,
 		})
 	})
 	router.Run() // listen and serve on localhost
