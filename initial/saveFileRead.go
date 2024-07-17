@@ -1,26 +1,36 @@
 package initial
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"strings"
 )
 
 var DecodedSaveFile []string
-var saveFileLoc string
+var SaveFiles []string
+var SaveFileLoc string
 var saveFileLocBuilder strings.Builder
 
-func saveFileLocSetter() {
+func SaveFileLocSetter() {
 	homedir, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatal(err)
 	}
 	saveFileLocBuilder.WriteString(homedir)
-	saveFileLocBuilder.WriteString("\\Documents\\Paradox Interactive\\Victoria 3\\save games\\ \n")
-	saveFileLoc = saveFileLocBuilder.String()
+	saveFileLocBuilder.WriteString("\\Documents\\Paradox Interactive\\Victoria 3\\save games\\")
+	SaveFileLoc = saveFileLocBuilder.String()
+}
+
+func SaveFileLister(){
+	files, err := os.ReadDir(SaveFileLoc)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		SaveFiles = append(SaveFiles, file.Name())
+	}
 }
 func SaveFileRead() {
-	saveFileLocSetter()
-	fmt.Print(saveFileLoc)
+
 }

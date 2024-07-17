@@ -4,6 +4,8 @@
     "godotenv",
     "gonic",
     "gorm",
-    "joho"
+    "joho",
+    "multitemplate",
+    "tmpl"
   ]
 }

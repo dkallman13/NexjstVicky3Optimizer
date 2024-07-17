@@ -2,6 +2,9 @@ based off of math from GeneralistGaming's spreadsheet
 ## TODO
 #### Backend
 - Get data from save file
+    - save selection 
+    -  read lines of save
+    - codify the save data
 - make a database with that data
 	- determine data structures of save
 	- make sure the data stays in the same timeline from autosaves
@@ -26,6 +29,7 @@ based off of math from GeneralistGaming's spreadsheet
 #### Frontend
 - start page
 	- save select
+	- mod combinations
 - tables for ___ in page form when the save is loaded:
 	- good prices
 		- in your market
