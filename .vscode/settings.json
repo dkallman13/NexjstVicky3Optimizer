@@ -1,11 +1,13 @@
 {
   "cSpell.words": [
+    "charbyte",
     "dkallman",
     "godotenv",
     "gonic",
     "gorm",
     "joho",
     "multitemplate",
+    "savefiles",
     "tmpl"
   ]
 }
