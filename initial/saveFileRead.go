@@ -7,11 +7,10 @@ import (
 	//"text/scanner"
 )
 
-var DecodedSaveFile []string
+var DecodedSaveFile SaveFile
 var SaveFiles []string
 var SaveFileLoc string
 var saveFileLocBuilder strings.Builder
-
 
 func SaveFileLocSetter() {
 	homedir, err := os.UserHomeDir()
@@ -23,7 +22,7 @@ func SaveFileLocSetter() {
 	SaveFileLoc = saveFileLocBuilder.String()
 }
 
-func SaveFileLister(){
+func SaveFileLister() {
 	files, err := os.ReadDir(SaveFileLoc)
 	if err != nil {
 		log.Fatal(err)
@@ -33,8 +32,8 @@ func SaveFileLister(){
 		SaveFiles = append(SaveFiles, file.Name())
 	}
 }
-func TokenizeSave(saveFileName string) string{
-	for _, file := range SaveFiles{
+func TokenizeSave(saveFileName string) string {
+	for _, file := range SaveFiles {
 		switch file == saveFileName {
 		case true:
 			var saveFileBuilder strings.Builder
@@ -46,8 +45,8 @@ func TokenizeSave(saveFileName string) string{
 			if err != nil {
 				log.Fatal(err)
 			}
-			for _, charbyte := range rawFile{
-				if(charbyte == 10){
+			for _, charbyte := range rawFile {
+				if charbyte == 10 {
 					break
 				}
 				rawFileTextBuilder.WriteByte(charbyte)
