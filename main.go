@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 	"strings"
-	//"github.com/dkallman13/Vicky3Optimizer/types"
 	"github.com/dkallman13/Vicky3Optimizer/initial"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"

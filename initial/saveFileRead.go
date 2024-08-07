@@ -4,13 +4,22 @@ import (
 	"log"
 	"os"
 	"strings"
-	//"text/scanner"
+
+	//"github.com/dkallman13/Vicky3Optimizer/types"
+	"github.com/bzick/tokenizer"
 )
 
-var DecodedSaveFile SaveFile
+const (
+	TokenCurlyOpen  = 1
+	TokenCurlyClose = 2
+	TokenEquals     = 3
+)
+
+// var DecodedSaveFile SaveFile
 var SaveFiles []string
 var SaveFileLoc string
 var saveFileLocBuilder strings.Builder
+var parser *tokenizer.Tokenizer
 
 func SaveFileLocSetter() {
 	homedir, err := os.UserHomeDir()
@@ -32,33 +41,43 @@ func SaveFileLister() {
 		SaveFiles = append(SaveFiles, file.Name())
 	}
 }
+
 func TokenizeSave(saveFileName string) string {
 	for _, file := range SaveFiles {
 		switch file == saveFileName {
 		case true:
 			var saveFileBuilder strings.Builder
-			//var scan scanner.Scanner
 			var rawFileTextBuilder strings.Builder
 			saveFileBuilder.WriteString(SaveFileLoc)
 			saveFileBuilder.WriteString(saveFileName)
 			rawFile, err := os.ReadFile(saveFileBuilder.String())
+			
+			
+			parser := tokenizer.New()
+			parser.AllowKeywordSymbols(tokenizer.Underscore, tokenizer.Numbers)
+			parser.DefineTokens(TokenCurlyOpen, []string{"{"})
+			parser.DefineTokens(TokenCurlyClose, []string{"}"})
+			parser.DefineTokens(TokenEquals, []string{"="})
+			stream := parser.ParseBytes(rawFile)
+			
+
 			if err != nil {
 				log.Fatal(err)
 			}
-			for _, charbyte := range rawFile {
-				if charbyte == 10 {
+			x := 0
+			for stream.IsValid() {
+				if stream.CurrentToken().Is(tokenizer.TokenKeyword) {
+					rawFileTextBuilder.WriteString(stream.CurrentToken().ValueString())
+					x++
+				}
+				if(x>5){
 					break
 				}
-				rawFileTextBuilder.WriteByte(charbyte)
+				stream.GoNext()
 			}
+			stream.Close()
 			return rawFileTextBuilder.String()
-			//scan.Init(strings.NewReader(rawFileTextBuilder.String()))
-			//scan.Whitespace = 1<<'\n'
 		}
 	}
 	return "fail"
-}
-
-func SaveFileRead() {
-
 }

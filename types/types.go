@@ -50,5 +50,7 @@ type Country struct {
 
 type SaveFile struct {
 	playerCountryId int
-	
+	countries []Country
+	goods []Good
+	pops []Pop
 }
